@@ -49,13 +49,6 @@ class _MovieViewState extends State<MovieView> {
   void initState() {
     super.initState();
     getFilm();
-
-    pages = [
-      buildHomeBody(),
-      const ListPage(),
-      const NewsPage(),
-      const OwnerProfilePage(),
-    ];
   }
 
   @override
@@ -79,7 +72,13 @@ class _MovieViewState extends State<MovieView> {
         ),
       ),
 
-      body: pages[_selectedIndex],
+      body: _selectedIndex == 0
+          ? buildHomeBody()
+          : _selectedIndex == 1
+              ? const ListPage()
+              : _selectedIndex == 2
+                  ? const NewsPage()
+                  : const OwnerProfilePage(),
 
       bottomNavigationBar: Container(
         height: 60,
@@ -409,4 +408,5 @@ class _MovieViewState extends State<MovieView> {
       ],
     );
   }
+
 }
